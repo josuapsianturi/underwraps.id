@@ -28,7 +28,7 @@ export default function Header() {
             <Image alt="UnderWraps" src="/logo2.png" width={500} height={500} className="h-auto w-30" />
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex md:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -38,7 +38,7 @@ export default function Header() {
             <Bars3Icon aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden md:flex md:gap-x-12">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -49,7 +49,7 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden md:flex md:flex-1 md:justify-end">
           <a href="#" className="text-sm/6 font-semibold text-gray-900 hover:text-gray-700">
             {/* Log in <span aria-hidden="true">&rarr;</span> */}
           </a>
@@ -57,7 +57,7 @@ export default function Header() {
       </nav>
 
       {/* mobile menu */}
-      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+      <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="md:hidden">
         <div className="fixed inset-0 z-50" />
         {/* DialogPanel */}
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-off-white-2 px-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
