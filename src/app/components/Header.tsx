@@ -49,11 +49,6 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div className="hidden md:flex md:flex-1 md:justify-end">
-          <a href="#" className="text-sm/6 font-semibold text-gray-900 hover:text-gray-700">
-            {/* Log in <span aria-hidden="true">&rarr;</span> */}
-          </a>
-        </div>
       </nav>
 
       {/* mobile menu */}
