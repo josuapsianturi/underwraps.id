@@ -17,7 +17,8 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-[#F3EDE5] border-b border-[#b6a894]">
+    // desktop menu
+    <header className="bg-off-white-2 border-b border-off-white-3">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8"
@@ -42,7 +43,7 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm/6 font-semibold text-[#3B2417] hover:text-[#3B2417]"
+              className="text-sm/6 font-semibold text-brown hover:text-brown-3"
             >
               {item.name}
             </Link>
@@ -54,13 +55,14 @@ export default function Header() {
           </a>
         </div>
       </nav>
+
+      {/* mobile menu */}
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-50" />
         {/* DialogPanel */}
-        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-[#F3EDE5] p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-off-white-2 px-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Underwraps.id</span>
               <Image alt="UnderWraps" src="/logo2.png" width={500} height={500} className="h-auto w-30" />
             </Link>
             <button
@@ -72,14 +74,14 @@ export default function Header() {
               <XMarkIcon aria-hidden="true" className="h-6 w-6" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-[#b6a894]">
+          <div className="">
+            <div className="-my-6 divide-y divide-off-white-3">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-[#3B2417]"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-brown hover:text-brown-3"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
