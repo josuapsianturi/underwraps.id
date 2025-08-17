@@ -6,6 +6,7 @@ type Navigation = {
     name: string;
     href: string;
     icon: (props: SVGProps<SVGSVGElement>) => ReactElement;
+    label?: string;
   }[];
 };
 
@@ -82,7 +83,8 @@ const navigation: Navigation = {
     { name: "TikTok", href: "https://www.tiktok.com/@underwraps.id", icon: TikTokIcon },
     { name: "Instagram", href: "https://www.instagram.com/underwraps.id", icon: InstagramIcon },
     { name: "Whatsapp", href: "https://wa.me/6281234567890", icon: WhatsappIcon },
-    { name: "Shopee", href: "https://shopee.co.id/underwraps.id", icon: ShopeeIcon },
+    { name: "Shopee Indonesia", href: "https://shopee.co.id/underwraps.id", icon: ShopeeIcon, label: "🇮🇩" },
+    { name: "Shopee Malaysia", href: "https://shopee.com.my/underwraps.my", icon: ShopeeIcon, label: "🇲🇾" },
   ],
 };
 
@@ -105,9 +107,15 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-gray-800"
+              aria-label={item.name}
+              title={item.name}
             >
-              <span className="sr-only">{item.name}</span>
-              <item.icon aria-hidden="true" className="size-6" />
+              <div className="flex items-center gap-2">
+                <item.icon aria-hidden="true" className="size-6" />
+                {item.label ? (
+                  <span className="text-sm leading-none">{item.label}</span>
+                ) : null}
+              </div>
             </a>
           ))}
         </div>
