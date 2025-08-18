@@ -4,8 +4,8 @@ export default function AboutPage() {
 
   return (
     <div className="bg-off-white-1">
-      <main className="isolate">
-        <div className="relative isolate -z-10">
+      <div className="isolate pt-24 lg:pt-0">
+        <div className="relative isolate">
           <svg aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-256 w-full mask-[radial-gradient(32rem_32rem_at_center,white,transparent)] stroke-off-white-2">
             <defs>
               <pattern x="50%" y={-1} id="1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84" width={200} height={200} patternUnits="userSpaceOnUse">
@@ -27,10 +27,10 @@ export default function AboutPage() {
             />
           </div>
           <div className="overflow-hidden">
-            <div className="mx-auto max-w-7xl px-6 pt-36 pb-32 sm:pt-60 lg:px-8 lg:pt-32">
+            <div className="mx-auto max-w-7xl px-6 pb-32 md:pt-20 lg:pt-0 lg:px-8">
               <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                 <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
-                  <h1 className="text-5xl font-semibold tracking-tight text-pretty text-brown sm:text-7xl">About UnderWraps</h1>
+                  <h1 className="text-5xl font-semibold tracking-tight text-pretty text-brown md:text-7xl">About UnderWraps</h1>
                   <p className="mt-8 text-lg font-medium text-pretty text-brown sm:max-w-md sm:text-xl/8 lg:max-w-none">
                     UnderWraps adalah sebuah gift shop rohani yang fokus mengembangkan produk-produk untuk mendukung pertumbuhan rohani dan iman setiap orang.
                     <br />
@@ -39,12 +39,12 @@ export default function AboutPage() {
                     <br />
                   </p>
                 </div>
-                <div className="mt-14 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
+                <div className="mt-14 md:mt-36 flex justify-end gap-8 sm:-mt-44 sm:justify-start sm:pl-20 lg:mt-0 lg:pl-0">
                   <div className="ml-auto w-44 flex-none space-y-8 pt-32 sm:ml-0 sm:pt-80 lg:order-last lg:pt-36 xl:order-0 xl:pt-80">
                     <div className="relative aspect-2/3 w-full">
                       <Image
                         alt="about"
-                        src="/banner.png"
+                        src="/products/p1.jpg"
                         fill
                         sizes="(max-width: 640px) 100vw, 176px"
                         className="rounded-xl bg-off-white-2 object-cover shadow-lg"
@@ -57,7 +57,7 @@ export default function AboutPage() {
                     <div className="relative aspect-2/3 w-full">
                       <Image
                         alt="about"
-                        src="/banner.png"
+                        src="/products/p3.jpg"
                         fill
                         sizes="(max-width: 640px) 100vw, 176px"
                         className="rounded-xl bg-off-white-2 object-cover shadow-lg"
@@ -67,7 +67,7 @@ export default function AboutPage() {
                     <div className="relative aspect-2/3 w-full">
                       <Image
                         alt="about"
-                        src="/banner.png"
+                        src="/products/p7.jpg"
                         fill
                         sizes="(max-width: 640px) 100vw, 176px"
                         className="rounded-xl bg-off-white-2 object-cover shadow-lg"
@@ -79,7 +79,7 @@ export default function AboutPage() {
                     <div className="relative aspect-2/3 w-full">
                       <Image
                         alt="about"
-                        src="/banner.png"
+                        src="/products/p4.jpg"
                         fill
                         sizes="(max-width: 640px) 100vw, 176px"
                         className="rounded-xl bg-off-white-2 object-cover shadow-lg"
@@ -89,7 +89,7 @@ export default function AboutPage() {
                     <div className="relative aspect-2/3 w-full">
                       <Image
                         alt="about"
-                        src="/banner.png"
+                        src="/products/p5.jpg"
                         fill
                         sizes="(max-width: 640px) 100vw, 176px"
                         className="rounded-xl bg-off-white-2 object-cover shadow-lg"
@@ -102,11 +102,11 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
       {/* Image section */}
-      <div className="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
-        <div className="relative aspect-5/2 w-full outline-1 -outline-offset-1 outline-off-white-2 xl:rounded-3xl">
-          <Image alt="banner" src="/banner.png" fill sizes="100vw" className="object-cover xl:rounded-3xl" priority />
+      <div className="mt-16 lg:mx-auto lg:max-w-7xl lg:px-8 pb-4 md:pb-6">
+        <div className="relative aspect-5/2 w-full outline-1 -outline-offset-1 outline-off-white-2 rounded-xl lg:rounded-3xl">
+          <Image alt="banner" src="/banner.png" fill sizes="100vw" className="object-cover rounded-xl lg:rounded-3xl" priority />
         </div>
       </div>
     </div>

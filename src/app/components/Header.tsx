@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     // desktop menu
-    <header className="bg-off-white-2 border-b border-off-white-3">
+    <header className="bg-off-white-2 border-b border-off-white-3 z-50">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8"
