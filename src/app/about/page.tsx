@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function AboutPage() {
 
   return (
-    <div className="bg-off-white-1">
+    <div className="bg-off-white">
       <div className="isolate pt-24 lg:pt-0">
         <div className="relative isolate">
           <svg aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-256 w-full mask-[radial-gradient(32rem_32rem_at_center,white,transparent)] stroke-off-white-2">
