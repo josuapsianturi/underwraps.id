@@ -30,6 +30,9 @@ body {
   h4 {
     @apply text-base font-bold text-brown;
   }
+  p {
+    @apply text-brown/80 text-base;
+  }
 }
 
 /* Markdown Content Styling */
