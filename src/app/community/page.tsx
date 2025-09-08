@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon, MinusSmallIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 type ReadingPackage = "1-pasal" | "1-pasal-1-renungan";
 
@@ -98,7 +99,7 @@ export default function CommunityPage() {
   }
 
   return (
-    <section className="py-10">
+    <section className="py-4 sm:py-6">
       <div className="mx-auto max-w-4xl w-auto">
       <Image
         alt="about"
@@ -111,8 +112,9 @@ export default function CommunityPage() {
       />
       </div>
 
-      <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-xl shadow-sm ring-1 ring-brown/10">
-        <form onSubmit={handleSubmit} className="px-4 mt-6 sm:px-6 pb-6 sm:pb-8 space-y-10">
+      {/* <div className="max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-xl shadow-sm ring-1 ring-brown/10"> */}
+      <div className="max-w-4xl mx-auto">
+        <form onSubmit={handleSubmit} className="px-0 mt-6 pb-6 sm:pb-8 space-y-10">
           {/* section 1: Formulir Pendaftaran */}
           <div className="pt-6 sm:pt-8 text-center space-y-2">
             <h1 className="text-2xl sm:text-3xl font-semibold">Valuable People Community</h1>
@@ -120,7 +122,7 @@ export default function CommunityPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <fieldset className="">
-              <legend className="text-brown">1. Darimana kamu tau info tentang Komunitas ini? <span className="text-red-600">*</span></legend>
+              <legend className="text-brown font-medium">1. Darimana kamu tau info tentang Komunitas ini? <span className="text-red-600">*</span></legend>
 
               <div className="space-y-3">
                 <label className="flex items-center gap-3">
@@ -283,7 +285,7 @@ export default function CommunityPage() {
             </div>
 
             <div>
-              <label htmlFor="birthPlaceAndDate" className="block text-brown font-medium">6. Tempat dan Tanggal Lahir <span className="text-red-600">*</span></label>
+              <label htmlFor="birthPlaceAndDate" className="block text-brown font-medium">7. Tempat dan Tanggal Lahir <span className="text-red-600">*</span></label>
               <input
                 type="text"
                 id="birthPlaceAndDate"
@@ -300,7 +302,7 @@ export default function CommunityPage() {
             </div>
 
             <div>
-              <label htmlFor="phoneNumber" className="block text-brown font-medium">7. Nomor Whatsapp <span className="text-red-600">*</span></label>
+              <label htmlFor="phoneNumber" className="block text-brown font-medium">8. Nomor Whatsapp <span className="text-red-600">*</span></label>
               <input
                 type="tel"
                 id="phoneNumber"
@@ -317,7 +319,7 @@ export default function CommunityPage() {
             </div>
 
             <fieldset className="space-y-3">
-              <legend className="text-brown font-medium">8. Usia Saat Ini</legend>
+              <legend className="text-brown font-medium">9. Usia Saat Ini</legend>
               <label className="flex items-center gap-3">
                 <input
                   type="radio"
@@ -375,7 +377,7 @@ export default function CommunityPage() {
             </fieldset>
 
             <fieldset className="space-y-3">
-              <legend className="text-brown font-medium">9. Paket Bacaan <span className="text-red-600">*</span></legend>
+              <legend className="text-brown font-medium">10. Paket Bacaan <span className="text-red-600">*</span></legend>
               <label className="flex items-center gap-3">
                 <input
                   type="radio"
@@ -516,10 +518,17 @@ export default function CommunityPage() {
           </div>
 
           {/* submit button */}
-          <div className="pt-2">
+          <div className="pt-2 space-y-6 text-center">
+            <div className="">
+              <label className="flex items-center justify-center space-x-3 text-center">
+                <input type="checkbox" className="form-checkbox accent-brown w-4 h-4" required />
+                <span className="text-brown/70 text-base lg:text-lg">Saya sudah baca dan setuju ikut aturan grup<span className="text-red-600">*</span></span>
+              </label>
+            </div>
+
             <button
               type="submit"
-              className="w-full sm:w-auto inline-flex items-center justify-center rounded-md bg-brown text-white px-5 py-2.5 font-medium hover:bg-brown-2 focus:outline-none focus:ring-2 focus:ring-yellow-2"
+              className="hover:cursor-pointer text-center w-full sm:max-w-sm inline-flex items-center justify-center rounded-md bg-brown text-white px-5 py-2.5 font-medium hover:bg-brown-2 focus:outline-none focus:ring-2 focus:ring-yellow-2"
             >
               Kirim
             </button>
