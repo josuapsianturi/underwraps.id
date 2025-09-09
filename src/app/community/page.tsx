@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon, MinusSmallIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 type ReadingPackage = "1-pasal" | "1-pasal-1-renungan";
 

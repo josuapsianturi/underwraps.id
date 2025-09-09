@@ -21,7 +21,7 @@ export default function Header() {
     <header className="bg-off-white-2 border-b border-off-white-3 z-50">
       <nav
         aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-8"
+        className="mx-auto flex max-w-6xl items-center justify-between px-6 sm:px-4"
       >
         <div className="flex items-center lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
