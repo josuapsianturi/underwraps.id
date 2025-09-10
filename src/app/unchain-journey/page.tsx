@@ -80,7 +80,7 @@ export default function UnchainJourneyPage() {
           <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
           <div className="pointer-events-none absolute bottom-2 left-2 sm:bottom-2 sm:left-2 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
             
-          <div className="mx-auto pb-20 lg:pb-15 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 sm:gap-32 lg:gap-16 items-center py-10 sm:py-24 lg:py-28">
+          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 sm:gap-32 lg:gap-16 items-center pb-20 sm:pb-0 py-10 sm:py-24 lg:py-36">
             {/* Left Content */}
             <div className="order-1 lg:order-1 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full bg-off-white-2/70 ring-1 ring-brown/10 px-3 py-1 text-sm text-brown/70">
@@ -147,7 +147,7 @@ export default function UnchainJourneyPage() {
 
                       <span>Sertifikasi</span>
                     </div>
-                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-4 sm:pl-6 lg:pl-4">
+                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-5 sm:pl-6 lg:pl-5">
                       <li>Neo NLP <span className="hidden sm:flex">(Neuro Linguistic Programming)</span></li>
                       <li> <span className="flex sm:hidden"> TPT </span> <span className="hidden sm:flex">Trauma Processing Therapy</span></li>
                     </ul>
@@ -191,14 +191,222 @@ export default function UnchainJourneyPage() {
 
                       <span>Jadwal</span>
                     </div>
-                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-4 sm:pl-6 lg:pl-4">
+                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-5 sm:pl-6 lg:pl-5">
                       <li>Google Meet</li>
                       <li>Setiap Sabtu</li>
-                      <li>55 Menit</li>
+                      <li>Max 55 Menit</li>
                     </ul>
                   </div>
                 </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pendekatan terapi Section */}
+      <div className="relative py-24 sm:py-32">
+        {/* Decorative dots */}
+        <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
+        
+        <div className="px-4">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-brown">
+              Pendekatan Terapi
+            </h2>
+            <p className="mt-4 text-lg text-brown/80">
+              Pendekatan terapi yang saya gunakan bersifat fleksibel dan disesuaikan dengan kebutuhan pribadi klien, dinamika kepribadian serta nilai dan tujuan hidup masing-masing individu.
+            </p>
+          </div>
+          
+          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 xl:grid-cols-4">
+            {/* CBT Card */}
+            <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-brown/10">
+                <svg className="w-6 h-6 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-brown text-center mb-2">Cognitive Behavioral Therapy (CBT)</h3>
+              <p className="text-sm text-brown/80 text-center leading-relaxed">
+                Terapi yang fokus pada perubahan pola pikir dan perilaku untuk mengatasi masalah emosional dan psikologis.
+              </p>
+            </div>
+
+            {/* DBT Card */}
+            <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-brown/10">
+                <svg className="w-6 h-6 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-brown text-center mb-2">Dialectical Behavior Therapy (DBT)</h3>
+              <p className="text-sm text-brown/80 text-center leading-relaxed">
+                Terapi yang menggabungkan penerimaan dan perubahan untuk mengatur emosi dan meningkatkan keterampilan interpersonal.
+              </p>
+            </div>
+
+            {/* TPT Card */}
+            <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-brown/10">
+                <svg className="w-6 h-6 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-brown text-center mb-2">Trauma Processing Therapy (TPT)</h3>
+              <p className="text-sm text-brown/80 text-center leading-relaxed">
+                Pendekatan khusus untuk memproses dan menyembuhkan trauma dengan aman dan efektif.
+              </p>
+            </div>
+
+            {/* SBFT Card */}
+            <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-brown/10">
+                <svg className="w-6 h-6 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-brown text-center mb-2">Solution Brief Focused Therapy (SBFT)</h3>
+              <p className="text-sm text-brown/80 text-center leading-relaxed">
+                Terapi berorientasi solusi yang fokus pada kekuatan dan sumber daya yang sudah dimiliki klien.
+              </p>
+            </div>
+
+            {/* Expressive Writing Therapy Card */}
+            <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-brown/10">
+                <svg className="w-6 h-6 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-brown text-center mb-2">Expressive Writing Therapy</h3>
+              <p className="text-sm text-brown/80 text-center leading-relaxed">
+                Terapi melalui menulis ekspresif untuk memproses emosi dan pengalaman hidup.
+              </p>
+            </div>
+
+            {/* Mindfulness Card */}
+            <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-brown/10">
+                <svg className="w-6 h-6 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-brown text-center mb-2">Mindfulness</h3>
+              <p className="text-sm text-brown/80 text-center leading-relaxed">
+                Praktik kesadaran penuh untuk meningkatkan kesejahteraan mental dan emosional.
+              </p>
+            </div>
+
+            {/* Art Therapy Card */}
+            <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+              <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-lg bg-brown/10">
+                <svg className="w-6 h-6 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-brown text-center mb-2">Art Therapy</h3>
+              <p className="text-sm text-brown/80 text-center leading-relaxed">
+                Terapi melalui seni untuk mengekspresikan emosi dan memproses pengalaman secara kreatif.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bidang konseling psikologis section */}
+      <div className="relative py-24 sm:py-32">
+        {/* Decorative dots */}
+        <div className="pointer-events-none absolute top-4 left-4 sm:top-6 sm:left-64 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute bottom-4 right-4 sm:bottom-6 sm:right-8 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-brown">
+              Bidang Konseling Psikologis
+            </h2>
+            <p className="mt-4 text-lg text-brown/80">
+              Saya siap mendampingi Anda dalam menghadapi berbagai tantangan kehidupan dan kesehatan mental berikut:
+            </p>
+          </div>
+          
+          <div className="mx-auto mt-16 max-w-4xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Trauma dan Kecemasan */}
+              <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brown/10 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-brown">Trauma dan Kecemasan</h3>
+                </div>
+              </div>
+
+              {/* Identitas Diri */}
+              <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brown/10 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-brown">Identitas Diri</h3>
+                </div>
+              </div>
+
+              {/* Masalah Dalam Hubungan */}
+              <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brown/10 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-brown">Masalah Dalam Hubungan</h3>
+                </div>
+              </div>
+
+              {/* Gangguan Mood */}
+              <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brown/10 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  </div>
+                  <div className="">
+                  <h3 className="text-lg font-semibold text-brown">Gangguan Mood</h3>
+                  <p className="text-sm text-brown/70">(seperti depresi, bipolar, dll.)</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Gangguan Kepribadian */}
+              <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brown/10 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-brown">Gangguan Kepribadian</h3>
+                </div>
+              </div>
+
+              {/* Karier dan Pengembangan Diri */}
+              <div className="rounded-2xl bg-off-white-2 p-6 shadow-lg ring-1 ring-brown/5">
+                <div className="flex items-center space-x-3">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brown/10 flex items-center justify-center">
+                    <svg className="w-4 h-4 text-brown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-brown">Karier dan Pengembangan Diri</h3>
+                </div>
               </div>
             </div>
           </div>
