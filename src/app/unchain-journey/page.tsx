@@ -79,25 +79,26 @@ export default function UnchainJourneyPage() {
           <div className="pointer-events-none absolute bottom-4 right-4 sm:bottom-6 sm:right-8 size-3 sm:size-4 rounded-full bg-brown" />
           <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
           <div className="pointer-events-none absolute bottom-2 left-2 sm:bottom-2 sm:left-2 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
-          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center py-20 sm:py-24 lg:py-28">
-            {/* Copy */}
-            <div className="order-2 lg:order-1 space-y-6">
+            
+          <div className="mx-auto pb-20 lg:pb-15 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 sm:gap-32 lg:gap-16 items-center py-10 sm:py-24 lg:py-28">
+            {/* Left Content */}
+            <div className="order-1 lg:order-1 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full bg-off-white-2/70 ring-1 ring-brown/10 px-3 py-1 text-sm text-brown/70">
                 Voluntary Counseling Program
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-brown tracking-tight">
                 Tempat Aman untuk Cerita & Pulih
               </h1>
-              <p className="text-brown/80 max-w-xl">
+              <p className="text-brown/80 max-w-xl mx-auto lg:mx-0">
                 Saya <span className="font-semibold"> Michelle Theodora, M.Psi. Psikolog </span>, Psikolog Klinis dan Leukemia Survivor.
                 Program konseling sukarela ini hadir agar kamu punya ruang untuk berbagi, menemukan arah, dan merasakan pendampingan penuh kasih.
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-center lg:justify-start gap-4">
                 <a href="#about-program" className="inline-flex items-center gap-2 rounded-md bg-brown text-white px-5 py-2.5 font-medium hover:bg-brown-2 focus:outline-none focus:ring-2 focus:ring-yellow-2">
                   <PaperAirplaneIcon className="h-5 w-5" aria-hidden="true" />
                   Mulai Isi Data
                 </a>
-                <div className="hidden sm:flex items-center gap-3 rounded-xl bg-off-white-2 ring-1 ring-brown/10 px-3 py-2">
+                <div className="flex items-center gap-3 rounded-xl bg-off-white-2 ring-1 ring-brown/10 px-3 py-2">
                   <div className="text-left">
                     <p className="text-sm font-semibold text-brown">Gratis & Sukarela</p>
                     <p className="text-xs text-brown/70">Dukungan donasi terbuka</p>
@@ -106,8 +107,8 @@ export default function UnchainJourneyPage() {
               </div>
             </div>
 
-            {/* Visual */}
-            <div className="order-1 lg:order-2">
+            {/* Right Visual */}
+            <div className="order-2 lg:order-2">
               <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80">
                 <div className="absolute inset-0 rounded-full ring-1 ring-yellow-1" />
                 <div className="absolute -inset-6 sm:-inset-8 rounded-full ring-1 ring-yellow-2" />
@@ -121,19 +122,57 @@ export default function UnchainJourneyPage() {
                   priority
                 />
                 
-                {/* Decorative brain icon box */}
-                <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-off-white-2 rounded-xl p-3 sm:p-4 shadow-md ring-1 ring-brown/10">
-                  <svg className="h-6 w-6 sm:h-8 sm:w-8 text-brown" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M11 21V2.352A3.451 3.451 0 0 0 9.5 2a3.5 3.5 0 0 0-3.261 2.238A3.5 3.5 0 0 0 4.04 8.015a3.518 3.518 0 0 0-.766 1.128c-.042.1-.064.209-.1.313a3.34 3.34 0 0 0-.106.344 3.463 3.463 0 0 0 .02 1.468A4.017 4.017 0 0 0 2.3 12.5l-.015.036a3.861 3.861 0 0 0-.216.779A3.968 3.968 0 0 0 2 14c.003.24.027.48.072.716a4 4 0 0 0 .235.832c.006.014.015.027.021.041a3.85 3.85 0 0 0 .417.727c.105.146.219.285.342.415.072.076.148.146.225.216.1.091.205.179.315.26.11.081.2.14.308.2.02.013.039.028.059.04v.053a3.506 3.506 0 0 0 3.03 3.469 3.426 3.426 0 0 0 4.154.577A.972.972 0 0 1 11 21Zm10.934-7.68a3.956 3.956 0 0 0-.215-.779l-.017-.038a4.016 4.016 0 0 0-.79-1.235 3.417 3.417 0 0 0 .017-1.468 3.387 3.387 0 0 0-.1-.333c-.034-.108-.057-.22-.1-.324a3.517 3.517 0 0 0-.766-1.128 3.5 3.5 0 0 0-2.202-3.777A3.5 3.5 0 0 0 14.5 2a3.451 3.451 0 0 0-1.5.352V21a.972.972 0 0 1-.184.546 3.426 3.426 0 0 0 4.154-.577A3.506 3.506 0 0 0 20 17.5v-.049c.02-.012.039-.027.059-.04.106-.064.208-.13.308-.2s.214-.169.315-.26c.077-.07.153-.14.225-.216a4.007 4.007 0 0 0 .459-.588c.115-.176.215-.361.3-.554.006-.014.015-.027.021-.041.087-.213.156-.434.205-.659.013-.057.024-.115.035-.173.046-.237.07-.478.073-.72a3.948 3.948 0 0 0-.066-.68Z" />
-                  </svg>
-                </div>
-
-                {/* Program info box */}
-                <div className="absolute -top-4 -left-4 sm:top-20 sm:-left-28 bg-off-white-2 rounded-xl p-3 sm:p-4 shadow-md ring-1 ring-brown/10 max-w-[200px] sm:max-w-[240px]">
+                {/* Brain */}
+                <div className="absolute -top-4 -right-1 sm:-top-11 sm:-right-19 bg-off-white-2 rounded-xl p-3 sm:p-4 max-w-[200px] sm:max-w-[240px] shadow-lg ring-1 ring-brown/10">
                   <div className="text-center">
                     <div className="flex items-center space-x-2 justify-center text-xs sm:text-sm font-semibold text-brown mb-1">
+                      <svg className="h-6 w-6 sm:h-8 sm:w-8 text-brown" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M11 21V2.352A3.451 3.451 0 0 0 9.5 2a3.5 3.5 0 0 0-3.261 2.238A3.5 3.5 0 0 0 4.04 8.015a3.518 3.518 0 0 0-.766 1.128c-.042.1-.064.209-.1.313a3.34 3.34 0 0 0-.106.344 3.463 3.463 0 0 0 .02 1.468A4.017 4.017 0 0 0 2.3 12.5l-.015.036a3.861 3.861 0 0 0-.216.779A3.968 3.968 0 0 0 2 14c.003.24.027.48.072.716a4 4 0 0 0 .235.832c.006.014.015.027.021.041a3.85 3.85 0 0 0 .417.727c.105.146.219.285.342.415.072.076.148.146.225.216.1.091.205.179.315.26.11.081.2.14.308.2.02.013.039.028.059.04v.053a3.506 3.506 0 0 0 3.03 3.469 3.426 3.426 0 0 0 4.154.577A.972.972 0 0 1 11 21Zm10.934-7.68a3.956 3.956 0 0 0-.215-.779l-.017-.038a4.016 4.016 0 0 0-.79-1.235 3.417 3.417 0 0 0 .017-1.468 3.387 3.387 0 0 0-.1-.333c-.034-.108-.057-.22-.1-.324a3.517 3.517 0 0 0-.766-1.128 3.5 3.5 0 0 0-2.202-3.777A3.5 3.5 0 0 0 14.5 2a3.451 3.451 0 0 0-1.5.352V21a.972.972 0 0 1-.184.546 3.426 3.426 0 0 0 4.154-.577A3.506 3.506 0 0 0 20 17.5v-.049c.02-.012.039-.027.059-.04.106-.064.208-.13.308-.2s.214-.169.315-.26c.077-.07.153-.14.225-.216a4.007 4.007 0 0 0 .459-.588c.115-.176.215-.361.3-.554.006-.014.015-.027.021-.041.087-.213.156-.434.205-.659.013-.057.024-.115.035-.173.046-.237.07-.478.073-.72a3.948 3.948 0 0 0-.066-.68Z" />
+                      </svg>
+                    </div>
+                    <p className="text-xs text-brown/80 leading-tight hidden sm:flex">
+                      Healing is a journey
+                    </p>
+                  </div>
+                </div>
+
+                {/* Sertifikasi */}
+                <div className="absolute -top-10 -left-10 sm:-top-16 sm:-left-40 bg-off-white-2 rounded-xl p-2 sm:p-4 shadow-lg ring-1 ring-brown/10 max-w-[200px] sm:max-w-[240px]">
+                  <div className="text-left">
+                    <div className="flex items-center justify-start space-x-2 text-xs sm:text-sm font-semibold text-brown mb-1">
+                      <svg className="w-4 h-4 sm:w-6 sm:h-6 text-brown stroke-brown" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.37988 12.0001L10.7899 14.4201L15.6199 9.58008" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M10.7499 2.45031C11.4399 1.86031 12.5699 1.86031 13.2699 2.45031L14.8499 3.81031C15.1499 4.07031 15.7099 4.28031 16.1099 4.28031H17.8099C18.8699 4.28031 19.7399 5.15031 19.7399 6.21031V7.91031C19.7399 8.30031 19.9499 8.87031 20.2099 9.17031L21.5699 10.7503C22.1599 11.4403 22.1599 12.5703 21.5699 13.2703L20.2099 14.8503C19.9499 15.1503 19.7399 15.7103 19.7399 16.1103V17.8103C19.7399 18.8703 18.8699 19.7403 17.8099 19.7403H16.1099C15.7199 19.7403 15.1499 19.9503 14.8499 20.2103L13.2699 21.5703C12.5799 22.1603 11.4499 22.1603 10.7499 21.5703L9.16988 20.2103C8.86988 19.9503 8.30988 19.7403 7.90988 19.7403H6.17988C5.11988 19.7403 4.24988 18.8703 4.24988 17.8103V16.1003C4.24988 15.7103 4.03988 15.1503 3.78988 14.8503L2.43988 13.2603C1.85988 12.5703 1.85988 11.4503 2.43988 10.7603L3.78988 9.17031C4.03988 8.87031 4.24988 8.31031 4.24988 7.92031V6.20031C4.24988 5.14031 5.11988 4.27031 6.17988 4.27031H7.90988C8.29988 4.27031 8.86988 4.06031 9.16988 3.80031L10.7499 2.45031Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+
+                      <span>Sertifikasi</span>
+                    </div>
+                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-4 sm:pl-6 lg:pl-4">
+                      <li>Neo NLP <span className="hidden sm:flex">(Neuro Linguistic Programming)</span></li>
+                      <li> <span className="flex sm:hidden"> TPT </span> <span className="hidden sm:flex">Trauma Processing Therapy</span></li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Patients */}
+                <div className="absolute -bottom-0 -right-6 sm:bottom-0 sm:-right-23 bg-off-white-2 rounded-xl p-2 sm:p-4 shadow-lg ring-1 ring-brown/10 max-w-[200px] sm:max-w-[240px]">
+                  <div className="text-center">
+                    <div className="flex items-center space-x-2 justify-center text-xs sm:text-sm font-semibold text-brown mb-0 sm:mb-1">
+                      <span>1000+</span>
+                    </div>
+                    <p className="text-xs text-brown/80 leading-tight flex sm:hidden">Patients</p>
+                    <div className="text-xs text-brown/80 leading-tight hidden sm:flex">
+                      Satisfied Patients
+                    </div>
+                  </div>
+                </div>
+
+                {/* Jadwal */}
+                <div className="absolute -bottom-15 -left-9 sm:-bottom-10 sm:-left-21 bg-off-white-2 rounded-xl p-2 sm:p-4 shadow-lg ring-1 ring-brown/10 max-w-[240px]">
+                  <div className="text-left">
+                    <div className="flex items-center justify-start space-x-2 text-xs sm:text-sm font-semibold text-brown mb-1">
                       <svg
-                        className="w-6 h-6 text-gray-800 dark:text-white"
+                        className="w-4 h-4 sm:w-6 sm:h-6 text-gray-800 dark:text-white"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -149,32 +188,24 @@ export default function UnchainJourneyPage() {
                           d="M4 10h16m-8-3V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Zm3-7h.01v.01H8V13Zm4 0h.01v.01H12V13Zm4 0h.01v.01H16V13Zm-8 4h.01v.01H8V17Zm4 0h.01v.01H12V17Zm4 0h.01v.01H16V17Z"
                         />
                       </svg>
+
                       <span>Jadwal</span>
                     </div>
-                    <div className="text-xs text-brown/80 leading-tight">
-                      Online via Google Meet<br/>
-                      <span className="font-medium">Setiap Sabtu, 55 menit</span>
-                    </div>
+                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-4 sm:pl-6 lg:pl-4">
+                      <li>Google Meet</li>
+                      <li>Setiap Sabtu</li>
+                      <li>55 Menit</li>
+                    </ul>
                   </div>
                 </div>
 
-                {/* Program info box */}
-                <div className="absolute -bottom-0 -right-4 sm:bottom-0 sm:-right-20 bg-off-white-2 rounded-xl p-3 sm:p-4 shadow-md ring-1 ring-brown/10 max-w-[200px] sm:max-w-[240px]">
-                  <div className="text-center">
-                    <div className="flex items-center space-x-2 justify-center text-xs sm:text-sm font-semibold text-brown mb-1">
-                      <span>1000+</span>
-                    </div>
-                    <div className="text-xs text-brown/80 leading-tight">
-                      Satisfied Patients
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+    {/* Testimoni */}
       <div className="relative isolate pt-24 pb-32 sm:pt-32">
         <div
           aria-hidden="true"
