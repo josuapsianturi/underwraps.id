@@ -1,5 +1,63 @@
-import { PaperAirplaneIcon } from '@heroicons/react/24/outline';
+import { PaperAirplaneIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import Image from 'next/image';
+
+const faqs = [
+  {
+    question: "Apa itu Unchain?",
+    answer:
+      "Unchain adalah program layanan dari Underwraps yang menghadirkan konseling, mentoring, dan faith-coaching. Kami menyediakan ruang aman bagi siapa saja untuk menghadapi tantangan hidup, menjaga kesehatan mental, dan bertumbuh dalam iman tanpa rasa takut dihakimi.",
+  },
+  {
+    question: "Apa bedanya konseling, mentoring, dan faith coaching di Unchain?",
+    answer: (
+      <div className="space-y-4">
+        <div>
+          <h4 className="font-semibold text-brown mb-2">Konseling</h4>
+          <p className="text-brown/80 mb-2">👉 Ditangani oleh psikolog klinis berlisensi yang telah menempuh pendidikan magister profesi Psikolog Klinis di berbagai universitas terakreditasi unggul.</p>
+          <p className="text-brown/80">Konseling cocok buat kamu yang sedang menghadapi stres, kecemasan, trauma, atau yang merasa aktivitas sehari-harinya terganggu. Psikolog akan membantu kamu menemukan pola pikir yang lebih sehat dan cara baru untuk pulih serta menghadapi tantangan hidup.</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-brown mb-2">Mentoring</h4>
+          <p className="text-brown/80 mb-2">👉 Ditangani oleh mentor yang memiliki latar belakang Sarjana Psikologi yang sudah terlatih.</p>
+          <p className="text-brown/80">Mentoring pas buat kamu yang butuh dukungan praktis, arahan, atau sekadar teman perjalanan.</p>
+        </div>
+        <div>
+          <h4 className="font-semibold text-brown mb-2">Faith Coaching</h4>
+          <p className="text-brown/80 mb-2">👉 Dipandu oleh pendeta, pemimpin rohani, atau mentor iman yang memiliki pemahaman mendalam tentang Alkitab—baik melalui pendidikan formal (teologi/sekolah Alkitab) maupun melalui pengalaman-pengalaman nyata dalam memimpin jemaat.</p>
+          <p className="text-brown/80">Faith coaching membantu kamu memahami pertanyaan-pertanyaan kritis seputar iman dan eksistensi Tuhan serta memberi kamu framework logis dan kokoh untuk memahami Tuhan dengan pendekatan yang non-judgemental dan rasional. Tujuannya adalah menolong kamu memperdalam relasi dengan Tuhan dan memiliki dasar iman yang lebih kokoh untuk menghadapi pergumulan rohani yang kamu hadapi.</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    question: "Siapa saja praktisi di Unchain?",
+    answer:
+      "Setiap praktisi konseling di Unchain adalah Psikolog Klinis dengan lisensi resmi (SIPP) dari Himpunan Psikologi Indonesia (HIMPSI), sehingga layanan yang diberikan legal, profesional, dan dapat dipercaya. Kami juga bekerja sama dengan mentor rohani (spiritual companions) yang sudah terlatih untuk mendampingi perjalanan iman dengan bijaksana.",
+  },
+  {
+    question: "Apakah harus orang Kristen yang bisa mencoba layanan Unchain?",
+    answer:
+      "Unchain dibangun dengan nilai-nilai iman Kristen, tapi siapa pun dipersilakan. Prinsip kami adalah menghadirkan pendampingan yang penuh kasih, non-judgmental, dan aman bagi siapa saja yang mencari pemulihan mental maupun spiritual.",
+  },
+  {
+    question: "Apa bedanya Unchain dengan layanan konseling di biro psikologi pada umumnya?",
+    answer:
+      "Unchain lahir dari kerinduan untuk menghadirkan ruang pemulihan yang menyentuh dua sisi penting kehidupan: psikologis dan rohani. Kami bekerja dengan pendekatan profesional psikologi, namun tetap membuka ruang diskusi bagi nilai-nilai firman Tuhan untuk menyertai prosesnya. Tujuannya bukan menggantikan layanan konseling yang sudah ada, melainkan menjadi alternatif bagi mereka yang ingin bertumbuh secara mental dan rohani.",
+  },
+  {
+    question: "Apakah data dan percakapan saya aman?",
+    answer:
+      "Sangat aman. Setiap percakapan dijaga kerahasiaannya sesuai kode etik psikologi dan etika pelayanan rohani. Apa yang dibicarakan hanya akan tinggal antara Anda dan praktisi.",
+  },
+  {
+    question: "Bagaimana cara mendaftar?",
+    answer:
+      "Cukup hubungi admin kami, pilih layanan yang dibutuhkan, lalu ikuti langkah pendaftaran. Tim kami akan segera menghubungi untuk menjadwalkan sesi yang paling sesuai dengan jadwal kamu.",
+    link: "#about-program",
+    linkText: "Hubungi admin sekarang",
+  },
+];
 
 const featuredTestimonial = {
   body: "Sebelum sesi mentoring ini aku penuh dengan perasaan dan pikiran tertuduh. Tapi setelah ngobrol sama ci Michelle bisa jauh lebih tenang. Bukan cuman wawasan baru yg didapet tapi dikasih contoh praktek sehari-harinya juga. Salah satu hal yang buat aku amaze ngeliat ci Michelle percaya dan mengasihi Tuhan dari penyampaiannya dan berkali-kali ingetin aku juga akan Kasih Tuhan, jujur itu berarti bgt disaat sebelum ini aku tertuduh dengan perasaan ga layak. Thankyouu so much untuk sesi mentoringnya berarti bgt 🙏 God bless ci",
@@ -80,7 +138,7 @@ export default function UnchainJourneyPage() {
           <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
           <div className="pointer-events-none absolute bottom-2 left-2 sm:bottom-2 sm:left-2 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
             
-          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 sm:gap-32 lg:gap-16 items-center pb-20 sm:pb-0 py-10 sm:py-24 lg:py-36">
+          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-20 sm:gap-32 lg:gap-16 items-center pb-20 py-10 sm:py-24 lg:py-36">
             {/* Left Content */}
             <div className="order-1 lg:order-1 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 rounded-full bg-off-white-2/70 ring-1 ring-brown/10 px-3 py-1 text-sm text-brown/70">
@@ -96,7 +154,7 @@ export default function UnchainJourneyPage() {
               <div className="flex items-center justify-center lg:justify-start gap-4">
                 <a href="#about-program" className="inline-flex items-center gap-2 rounded-md bg-brown text-white px-5 py-2.5 font-medium hover:bg-brown-2 focus:outline-none focus:ring-2 focus:ring-yellow-2">
                   <PaperAirplaneIcon className="h-5 w-5" aria-hidden="true" />
-                  Mulai Isi Data
+                  Daftar Sekarang
                 </a>
                 <div className="flex items-center gap-3 rounded-xl bg-off-white-2 ring-1 ring-brown/10 px-3 py-2">
                   <div className="text-left">
@@ -147,7 +205,7 @@ export default function UnchainJourneyPage() {
 
                       <span>Sertifikasi</span>
                     </div>
-                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-5 sm:pl-6 lg:pl-5">
+                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-4 sm:pl-5 lg:pl-4.7">
                       <li>Neo NLP <span className="hidden sm:flex">(Neuro Linguistic Programming)</span></li>
                       <li> <span className="flex sm:hidden"> TPT </span> <span className="hidden sm:flex">Trauma Processing Therapy</span></li>
                     </ul>
@@ -191,7 +249,7 @@ export default function UnchainJourneyPage() {
 
                       <span>Jadwal</span>
                     </div>
-                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-5 sm:pl-6 lg:pl-5">
+                    <ul className="text-xs text-brown/80 leading-tight list-disc pl-4 sm:pl-5 lg:pl-4.7">
                       <li>Google Meet</li>
                       <li>Setiap Sabtu</li>
                       <li>Max 55 Menit</li>
@@ -409,6 +467,95 @@ export default function UnchainJourneyPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ section */}
+      <div className="relative py-24 sm:py-32">
+        {/* Decorative dots */}
+        <div className="pointer-events-none absolute top-4 left-4 sm:top-6 sm:left-64 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute bottom-4 right-4 sm:bottom-6 sm:right-8 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
+        
+        <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-4xl font-semibold tracking-tight text-brown sm:text-5xl">
+              Pertanyaan yang sering diajukan
+            </h2>
+            <dl className="mt-16 space-y-6">
+              {faqs.map((faq, idx) => (
+                <Disclosure key={`${faq.question}-${idx}`} as="div" className="group">
+                  <div className="rounded-2xl bg-off-white-2/50 hover:bg-off-white-2/70 transition-all duration-500 ease-out border border-brown/10 hover:border-brown/20 group-data-open:border-brown/30 overflow-hidden">
+                    <dt>
+                      <DisclosureButton className="group flex w-full items-center justify-between text-left p-6 hover:bg-brown/5 transition-all duration-300 ease-out cursor-pointer">
+                        <span className="text-lg font-semibold text-brown group-hover:text-brown/90 transition-colors duration-300 ease-out leading-relaxed flex-1 pr-4">
+                          {faq.question}
+                        </span>
+                        <div className="flex-shrink-0">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brown/10 group-hover:bg-brown/15 group-data-open:bg-brown/20 transition-all duration-300 ease-out">
+                            <ChevronDownIcon 
+                              aria-hidden="true" 
+                              className="h-5 w-5 text-brown transition-all duration-500 ease-out group-data-open:rotate-180" 
+                            />
+                          </div>
+                        </div>
+                      </DisclosureButton>
+                    </dt>
+                    <DisclosurePanel 
+                      as="dd" 
+                      className="overflow-hidden transition-all duration-800 ease-out data-[closed]:max-h-0 data-[open]:max-h-[800px]"
+                    >
+                      <div className="px-6 pb-6">
+                        <div className="border-t border-brown/10 pt-4">
+                          <div className="pl-4">
+                            {typeof faq.answer === 'string' ? (
+                              <div className="space-y-3">
+                                <p className="text-base leading-relaxed text-brown/80 font-normal">
+                                  {faq.answer}
+                                </p>
+                                {faq.link && (
+                                  <div className="pt-2">
+                                    <a 
+                                      href={faq.link} 
+                                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brown/10 hover:bg-brown/15 text-brown font-medium transition-all duration-300 ease-out hover:shadow-sm group"
+                                    >
+                                      <span>{faq.linkText}</span>
+                                      <svg className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                      </svg>
+                                    </a>
+                                  </div>
+                                )}
+                              </div>
+                            ) : (
+                              <div className="space-y-3">
+                                <div className="text-base leading-relaxed text-brown/80 font-normal">
+                                  {faq.answer}
+                                </div>
+                                {faq.link && (
+                                  <div className="pt-2">
+                                    <a 
+                                      href={faq.link} 
+                                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brown/10 hover:bg-brown/15 text-brown font-medium transition-all duration-300 ease-out hover:shadow-sm group"
+                                    >
+                                      <span>{faq.linkText}</span>
+                                      <svg className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                                      </svg>
+                                    </a>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </DisclosurePanel>
+                  </div>
+                </Disclosure>
+              ))}
+            </dl>
           </div>
         </div>
       </div>
