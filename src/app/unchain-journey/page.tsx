@@ -195,7 +195,7 @@ export default function UnchainJourneyPage() {
                 </div>
 
                 {/* Sertifikasi */}
-                <div className="absolute -top-10 -left-10 sm:-top-16 sm:-left-40 bg-off-white-2 rounded-xl p-2 sm:p-4 shadow-lg ring-1 ring-brown/10 max-w-[200px] sm:max-w-[240px]">
+                <div className="absolute -top-10 -left-11 sm:-top-16 sm:-left-41 bg-off-white-2 rounded-xl p-2 sm:p-4 shadow-lg ring-1 ring-brown/10 max-w-[200px] sm:max-w-[240px]">
                   <div className="text-left">
                     <div className="flex items-center justify-start space-x-2 text-xs sm:text-sm font-semibold text-brown mb-1">
                       <svg className="w-4 h-4 sm:w-6 sm:h-6 text-brown stroke-brown" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -226,7 +226,7 @@ export default function UnchainJourneyPage() {
                 </div>
 
                 {/* Jadwal */}
-                <div className="absolute -bottom-15 -left-9 sm:-bottom-10 sm:-left-21 bg-off-white-2 rounded-xl p-2 sm:p-4 shadow-lg ring-1 ring-brown/10 max-w-[240px]">
+                <div className="absolute -bottom-15 -left-11 sm:-bottom-10 sm:-left-23 bg-off-white-2 rounded-xl p-2 sm:p-4 shadow-lg ring-1 ring-brown/10 max-w-[240px]">
                   <div className="text-left">
                     <div className="flex items-center justify-start space-x-2 text-xs sm:text-sm font-semibold text-brown mb-1">
                       <svg
@@ -257,6 +257,65 @@ export default function UnchainJourneyPage() {
                   </div>
                 </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* About Section */}
+      <div className="relative py-24 sm:py-32">
+        {/* Decorative dots */}
+        <div className="pointer-events-none absolute top-4 left-4 sm:top-6 sm:left-64 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute bottom-4 right-4 sm:bottom-6 sm:right-8 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
+        
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-brown mb-8 text-center">
+              Tentang Unchain Journey
+            </h2>
+            
+            <div className="prose prose-lg max-w-none text-brown/80 space-y-6">
+              <p className="text-lg leading-relaxed">
+                Kami menemukan adanya orang-orang yang masih merasa kesulitan menjaga keseimbangan antara iman dan kesehatan mental. Ada yang terlalu menekankan sisi rohani, hingga mengabaikan kebutuhan psikologisnya. Sebaliknya, ada yang fokus mencari pertolongan secara psikologis, namun merasa kosong secara rohani.
+              </p>
+              
+              <p className="text-lg leading-relaxed">
+                Hal ini kemudian muncul dalam bentuk ketegangan batin seperti misalnya, ada yang merasa sudah rajin berdoa dan beriman pada Tuhan, tapi masih terluka secara emosional dan belum pulih dari luka batin; atau merasa stabil secara mental, tapi kehilangan arah dan tujuan Tuhan dalam hidupnya.
+              </p>
+              
+              <p className="text-lg leading-relaxed">
+                Meskipun sejak tahun 2020, Underwraps hanya berfokus untuk membantu orang-orang untuk lebih bersemangat membaca Alkitab melalui Bible journaling. Namun seiring waktu, kebutuhan yang muncul semakin jelas dari banyaknya cerita dan pesan yang masuk di sosial media Under Wraps. Kami menyadari bahwa saat ini banyak orang bukan hanya membutuhkan produk yang bisa membantu, tetapi juga ruang aman untuk bertumbuh secara psikologis dan rohani.
+              </p>
+              
+              <div className="bg-off-white-2/50 rounded-2xl p-8 border border-brown/10">
+                <p className="text-lg leading-relaxed mb-4">
+                  Penelitian menunjukkan bahwa spiritualitas dan kesehatan mental saling berhubungan erat—keduanya sama-sama berkontribusi pada resiliensi, kebahagiaan, dan kualitas hidup seseorang (Gutierrez-Rojas et al., 2025; Aggarwal et al., 2023). Studi global menunjukkan bahwa ketika keseimbangan ini tercapai, seseorang lebih mampu menghadapi stres, mengelola emosi, dan menemukan makna hidup (Bożek et al., 2020; Parviniannasab et al., 2022).
+                </p>
+              </div>
+              
+              <p className="text-lg leading-relaxed">
+                Oleh karena itu, Underwraps mengembangkan program bernama Unchain yaitu sebuah ruang aman yang menyediakan layanan berupa konseling dan mentoring, yang ditangani oleh psikolog berlisensi dan mentor atau coach. Unchain hadir untuk membantu kamu mengelola emosi, menghadapi tantangan hidup dengan cara yang lebih sehat dan adaptif sehingga kamu bisa menikmati kehidupan yang fulfilling dan penuh makna.
+              </p>
+              
+              {/* References */}
+              <div className="mt-12 pt-8 border-t border-brown/10">
+                <h3 className="text-xl font-semibold text-brown mb-6">Referensi</h3>
+                <div className="space-y-4 text-sm text-brown/70 leading-relaxed">
+                  <p>
+                    Bożek, A., Nowak, P. F., & Blukacz, M. (2020). The relationship between spirituality, health-related behavior, and psychological well-being. <em>Frontiers in psychology</em>, <em>11</em>, 1997.
+                  </p>
+                  <p>
+                    Gutierrez-Rojas, A., Manco-Herrera, C., Nuñez-Escarcena, X., Loayza-Ramirez, L., Sanca-Valeriano, S., Rodriguez-Pantigoso, W., & Espinola-Sanchez, M. (2025). The influence of spirituality on psychological resilience in cancer patients undergoing oncological treatment: a cross-sectional study. <em>BMC Palliative Care</em>, <em>24</em>(1), 136.
+                  </p>
+                  <p>
+                    Aggarwal, S., Wright, J., Morgan, A., Patton, G., & Reavley, N. (2023). Religiosity and spirituality in the prevention and management of depression and anxiety in young people: a systematic review and meta-analysis. <em>BMC psychiatry</em>, <em>23</em>(1), 729. https://doi.org/10.1186/s12888-023-05091-2
+                  </p>
+                  <p>
+                    Parviniannasab, A. M., Bijani, M., & Dehghani, A. (2022). The mediating role of psychological capital in relations between spiritual well-being and mental health among nursing students. <em>BMC psychology</em>, <em>10</em>(1), 230.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -480,7 +539,7 @@ export default function UnchainJourneyPage() {
         
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
           <div className="mx-auto max-w-4xl">
-            <h2 className="text-4xl font-semibold tracking-tight text-brown sm:text-5xl">
+            <h2 className="text-4xl font-semibold text-center tracking-tight text-brown sm:text-5xl">
               Pertanyaan yang sering diajukan
             </h2>
             <dl className="mt-16 space-y-6">
