@@ -1,6 +1,53 @@
+"use client";
+
 import { PaperAirplaneIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import Image from 'next/image';
+import { useState, useMemo } from 'react';
+
+type Gender = "laki-laki" | "perempuan" | "memilih-tidak-menjawab";
+
+type CounselingTopic = 
+  | "penyakit-fisik" 
+  | "tidak-percaya-diri" 
+  | "hubungan-tidak-sehat" 
+  | "pengkhianatan" 
+  | "patah-hati" 
+  | "kesepian" 
+  | "masalah-komunikasi" 
+  | "lainnya";
+
+type FormErrors = Partial<Record<keyof FormState, string>> & {
+  counselingTopicOther?: string;
+};
+
+interface FormState {
+  fullName: string;
+  gender: Gender | "";
+  birthPlaceAndDate: string;
+  domicile: string;
+  religion: string;
+  mainActivity: string;
+  activityLocation: string;
+  phoneNumber: string;
+  counselingTopic: CounselingTopic | "";
+  counselingTopicOther: string;
+  problemDescription: string;
+  expectations: string;
+  email: string;
+  // Pre-Counseling questions
+  selfHarm: boolean | null;
+  suicideThoughts: boolean | null;
+  previousCounseling: boolean | null;
+  previousComplaints: string;
+  previousTreatments: string;
+  expectedApproach: string;
+  // Voluntary Contribution
+  wantsToContribute: boolean | null;
+  proofOfTransferFile: File | null;
+  wantsHelp: boolean | null;
+  willingToEvaluate: boolean | null;
+}
 
 const faqs = [
   {
@@ -127,6 +174,93 @@ function Stars({ count = 5, max = 5 }: { count?: number, max?: number }) {
 }
 
 export default function UnchainJourneyPage() {
+  const [form, setForm] = useState<FormState>({
+    fullName: "",
+    gender: "",
+    birthPlaceAndDate: "",
+    domicile: "",
+    religion: "",
+    mainActivity: "",
+    activityLocation: "",
+    phoneNumber: "",
+    counselingTopic: "",
+    counselingTopicOther: "",
+    problemDescription: "",
+    expectations: "",
+    email: "",
+    // Pre-Counseling questions
+    selfHarm: null,
+    suicideThoughts: null,
+    previousCounseling: null,
+    previousComplaints: "",
+    previousTreatments: "",
+    expectedApproach: "",
+    // Voluntary Contribution
+    wantsToContribute: null,
+    proofOfTransferFile: null,
+    wantsHelp: null,
+    willingToEvaluate: null,
+  });
+
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const isOtherTopicSelected = useMemo(() => form.counselingTopic === "lainnya", [form.counselingTopic]);
+
+  function update<K extends keyof FormState>(key: K, value: FormState[K]) {
+    setForm(prev => ({ ...prev, [key]: value }));
+  }
+
+  function validate(): boolean {
+    const nextErrors: FormErrors = {};
+
+    if (!form.fullName.trim()) nextErrors.fullName = "Wajib diisi";
+    if (!form.gender) nextErrors.gender = "Wajib dipilih";
+    if (!form.birthPlaceAndDate.trim()) nextErrors.birthPlaceAndDate = "Wajib diisi";
+    if (!form.domicile.trim()) nextErrors.domicile = "Wajib diisi";
+    if (!form.mainActivity.trim()) nextErrors.mainActivity = "Wajib diisi";
+    if (!form.activityLocation.trim()) nextErrors.activityLocation = "Wajib diisi";
+    if (!form.phoneNumber.trim()) nextErrors.phoneNumber = "Wajib diisi";
+    if (!form.counselingTopic) nextErrors.counselingTopic = "Wajib dipilih";
+    if (isOtherTopicSelected && !form.counselingTopicOther.trim()) {
+      nextErrors.counselingTopicOther = "Harap jelaskan topik lainnya";
+    }
+    if (!form.problemDescription.trim()) nextErrors.problemDescription = "Wajib diisi";
+    if (!form.expectations.trim()) nextErrors.expectations = "Wajib diisi";
+    if (!form.email.trim()) nextErrors.email = "Wajib diisi";
+    
+    // Pre-Counseling validation
+    if (form.selfHarm === null) nextErrors.selfHarm = "Wajib dipilih";
+    if (form.suicideThoughts === null) nextErrors.suicideThoughts = "Wajib dipilih";
+    if (form.previousCounseling === null) nextErrors.previousCounseling = "Wajib dipilih";
+    if (form.previousCounseling === true && !form.previousComplaints.trim()) {
+      nextErrors.previousComplaints = "Wajib diisi jika pernah konseling";
+    }
+    if (!form.expectedApproach.trim()) nextErrors.expectedApproach = "Wajib diisi";
+    
+    // Voluntary Contribution validation
+    if (form.wantsToContribute === null) nextErrors.wantsToContribute = "Wajib dipilih";
+    if (form.wantsToContribute === true && !form.proofOfTransferFile) {
+      nextErrors.proofOfTransferFile = "Bukti transfer wajib diunggah jika ingin berkontribusi";
+    }
+    
+    if (form.wantsHelp === null) nextErrors.wantsHelp = "Wajib dipilih";
+    if (form.willingToEvaluate === null) nextErrors.willingToEvaluate = "Wajib dipilih";
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setIsSubmitted(false);
+    if (!validate()) return;
+
+    // Placeholder submit; integrate with backend or Google Form later
+    console.log("Unchain Journey Form Data", form);
+    setIsSubmitted(true);
+  }
+
   return (
     <section>
       {/* Hero section */}
@@ -530,6 +664,703 @@ export default function UnchainJourneyPage() {
         </div>
       </div>
 
+      {/* Registration Form Section */}
+      <div id="about-program" className="relative py-24 sm:py-32">
+        {/* Decorative dots */}
+        <div className="pointer-events-none absolute top-4 left-4 sm:top-6 sm:left-64 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute bottom-4 right-4 sm:bottom-6 sm:right-8 size-3 sm:size-4 rounded-full bg-brown" />
+        <div className="pointer-events-none absolute top-1/6 right-1 sm:top-1/6 sm:right-1 size-3 sm:size-4 rounded-full ring-2 ring-yellow-3" />
+        
+        <div className="max-w-4xl mx-auto">
+          <form onSubmit={handleSubmit} className="px-0 mt-6 pb-6 sm:pb-8 space-y-10">
+            {/* Form Header */}
+            <div className="pt-6 sm:pt-8 text-center space-y-2">
+              <h1 className="text-2xl sm:text-3xl font-semibold">Formulir Pendaftaran Unchain Journey</h1>
+              <p className="text-brown/70">Silahkan isi formulir ini dengan lengkap</p>
+            </div>
+
+            {/* Consent Questions */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold text-brown">Pertanyaan Persetujuan</h2>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <fieldset>
+                  <legend className="text-brown font-medium">
+                    1. Apakah kamu mau dibantu juga? <span className="text-red-600">*</span>
+                  </legend>
+                  <div className="space-y-3 mt-2">
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="wantsHelp"
+                        value="true"
+                        checked={form.wantsHelp === true}
+                        onChange={() => update("wantsHelp", true)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Ya</span>
+                    </label>
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="wantsHelp"
+                        value="false"
+                        checked={form.wantsHelp === false}
+                        onChange={() => update("wantsHelp", false)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Tidak</span>
+                    </label>
+                  </div>
+                  {errors.wantsHelp && <p className="text-red-600 text-sm mt-1">{errors.wantsHelp}</p>}
+                </fieldset>
+
+                <fieldset>
+                  <legend className="text-brown font-medium">
+                    2. Apakah kamu berkenan untuk mengisi link evaluasi setelah sesi? <span className="text-red-600">*</span>
+                  </legend>
+                  <div className="space-y-3 mt-2">
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="willingToEvaluate"
+                        value="true"
+                        checked={form.willingToEvaluate === true}
+                        onChange={() => update("willingToEvaluate", true)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Ya</span>
+                    </label>
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="willingToEvaluate"
+                        value="false"
+                        checked={form.willingToEvaluate === false}
+                        onChange={() => update("willingToEvaluate", false)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Tidak</span>
+                    </label>
+                  </div>
+                  {errors.willingToEvaluate && <p className="text-red-600 text-sm mt-1">{errors.willingToEvaluate}</p>}
+                </fieldset>
+              </div>
+            </div>
+
+            {/* Personal Information Section */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold text-brown">Informasi Data Diri</h2>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {/* Name */}
+                <div>
+                  <label htmlFor="fullName" className="block text-brown font-medium">
+                    3. Nama dan Nama Panggilan <span className="text-red-600">*</span>
+                  </label>
+                  <p className="text-sm text-brown/60 mb-2">Contoh: Hutomo, Tomo</p>
+                  <input
+                    type="text"
+                    id="fullName"
+                    value={form.fullName}
+                    onChange={e => update("fullName", e.target.value)}
+                    required
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Nama Lengkap"
+                  />
+                  {errors.fullName && <p className="text-red-600 text-sm mt-1">{errors.fullName}</p>}
+                </div>
+
+                {/* Gender */}
+                <fieldset>
+                  <legend className="text-brown font-medium">4. Jenis Kelamin <span className="text-red-600">*</span></legend>
+                  <div className="space-y-3 mt-2">
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="laki-laki"
+                        checked={form.gender === "laki-laki"}
+                        onChange={() => update("gender", "laki-laki")}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Laki-laki</span>
+                    </label>
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="perempuan"
+                        checked={form.gender === "perempuan"}
+                        onChange={() => update("gender", "perempuan")}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Perempuan</span>
+                    </label>
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="memilih-tidak-menjawab"
+                        checked={form.gender === "memilih-tidak-menjawab"}
+                        onChange={() => update("gender", "memilih-tidak-menjawab")}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Memilih tidak menjawab</span>
+                    </label>
+                  </div>
+                  {errors.gender && <p className="text-red-600 text-sm mt-1">{errors.gender}</p>}
+                </fieldset>
+
+                {/* Birth Place and Date */}
+                <div>
+                  <label htmlFor="birthPlaceAndDate" className="block text-brown font-medium">
+                    5. Tempat dan Tanggal Lahir <span className="text-red-600">*</span>
+                  </label>
+                  <p className="text-sm text-brown/60 mb-2">Contoh: Jakarta, 22 Mei 2000</p>
+                  <input
+                    type="text"
+                    id="birthPlaceAndDate"
+                    value={form.birthPlaceAndDate}
+                    onChange={e => update("birthPlaceAndDate", e.target.value)}
+                    required
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Tempat, Tanggal Lahir"
+                  />
+                  {errors.birthPlaceAndDate && <p className="text-red-600 text-sm mt-1">{errors.birthPlaceAndDate}</p>}
+                </div>
+
+                {/* Domicile */}
+                <div>
+                  <label htmlFor="domicile" className="block text-brown font-medium">
+                    6. Domisili <span className="text-red-600">*</span>
+                  </label>
+                  <p className="text-sm text-brown/60 mb-2">Tempat tinggal saat ini</p>
+                  <input
+                    type="text"
+                    id="domicile"
+                    value={form.domicile}
+                    onChange={e => update("domicile", e.target.value)}
+                    required
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Domisili"
+                  />
+                  {errors.domicile && <p className="text-red-600 text-sm mt-1">{errors.domicile}</p>}
+                </div>
+
+                {/* Religion */}
+                <div>
+                  <label htmlFor="religion" className="block text-brown font-medium">
+                    7. Agama <span className="text-sm text-brown/60 mb-2">(Optional)</span>
+                  </label>
+                  
+                  <input
+                    type="text"
+                    id="religion"
+                    value={form.religion}
+                    onChange={e => update("religion", e.target.value)}
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Jawaban Anda"
+                  />
+                </div>
+
+                {/* Main Activity */}
+                <div>
+                  <label htmlFor="mainActivity" className="block text-brown font-medium">
+                    8. Kegiatan utama saat ini <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="mainActivity"
+                    value={form.mainActivity}
+                    onChange={e => update("mainActivity", e.target.value)}
+                    required
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Kegiatan utama"
+                  />
+                  {errors.mainActivity && <p className="text-red-600 text-sm mt-1">{errors.mainActivity}</p>}
+                </div>
+
+                {/* Activity Location */}
+                <div>
+                  <label htmlFor="activityLocation" className="block text-brown font-medium">
+                    9. Di mana Anda melakukan kegiatan utama Anda? (kuliah, kerja, atau wiraswasta) <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="activityLocation"
+                    value={form.activityLocation}
+                    onChange={e => update("activityLocation", e.target.value)}
+                    required
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Lokasi kegiatan"
+                  />
+                  {errors.activityLocation && <p className="text-red-600 text-sm mt-1">{errors.activityLocation}</p>}
+                </div>
+
+                {/* Phone Number */}
+                <div>
+                  <label htmlFor="phoneNumber" className="block text-brown font-medium">
+                    10. No Telp Aktif (Whatsapp) <span className="text-red-600">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="phoneNumber"
+                    value={form.phoneNumber}
+                    onChange={e => update("phoneNumber", e.target.value)}
+                    required
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Nomor WhatsApp"
+                  />
+                  {errors.phoneNumber && <p className="text-red-600 text-sm mt-1">{errors.phoneNumber}</p>}
+                </div>
+              </div>
+            </div>
+
+            {/* Counseling Information Section */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold text-brown">Informasi Konseling</h2>
+              
+              {/* Counseling Topic */}
+              <fieldset>
+                <legend className="text-brown font-medium">
+                  11. Silahkan pilih topik masalah yang ingin kamu sampaikan di sesi konseling <span className="text-red-600">*</span>
+                </legend>
+                <div className="space-y-3 mt-2">
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="counselingTopic"
+                      value="penyakit-fisik"
+                      checked={form.counselingTopic === "penyakit-fisik"}
+                      onChange={() => update("counselingTopic", "penyakit-fisik")}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Merasa bingung/down karena menderita penyakit fisik (kanker, dll)</span>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="counselingTopic"
+                      value="tidak-percaya-diri"
+                      checked={form.counselingTopic === "tidak-percaya-diri"}
+                      onChange={() => update("counselingTopic", "tidak-percaya-diri")}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Merasa tidak percaya diri</span>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="counselingTopic"
+                      value="hubungan-tidak-sehat"
+                      checked={form.counselingTopic === "hubungan-tidak-sehat"}
+                      onChange={() => update("counselingTopic", "hubungan-tidak-sehat")}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Berada di Hubungan yang Tidak Sehat</span>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="counselingTopic"
+                      value="pengkhianatan"
+                      checked={form.counselingTopic === "pengkhianatan"}
+                      onChange={() => update("counselingTopic", "pengkhianatan")}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Pengkhianatan</span>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="counselingTopic"
+                      value="patah-hati"
+                      checked={form.counselingTopic === "patah-hati"}
+                      onChange={() => update("counselingTopic", "patah-hati")}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Patah Hati karena Putus Cinta</span>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="counselingTopic"
+                      value="kesepian"
+                      checked={form.counselingTopic === "kesepian"}
+                      onChange={() => update("counselingTopic", "kesepian")}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Kesepian</span>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="counselingTopic"
+                      value="masalah-komunikasi"
+                      checked={form.counselingTopic === "masalah-komunikasi"}
+                      onChange={() => update("counselingTopic", "masalah-komunikasi")}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Masalah Komunikasi</span>
+                  </label>
+                  <div className="flex flex-col gap-2">
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="counselingTopic"
+                        value="lainnya"
+                        checked={form.counselingTopic === "lainnya"}
+                        onChange={() => update("counselingTopic", "lainnya")}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Yang lain:</span>
+                    </label>
+                    {isOtherTopicSelected && (
+                      <input
+                        type="text"
+                        value={form.counselingTopicOther}
+                        onChange={e => update("counselingTopicOther", e.target.value)}
+                        className="w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                        placeholder="Tuliskan topik lainnya"
+                      />
+                    )}
+                  </div>
+                </div>
+                {errors.counselingTopic && <p className="text-red-600 text-sm mt-1">{errors.counselingTopic}</p>}
+                {errors.counselingTopicOther && isOtherTopicSelected && (
+                  <p className="text-red-600 text-sm mt-1">{errors.counselingTopicOther}</p>
+                )}
+              </fieldset>
+
+              {/* Problem Description */}
+              <div>
+                <label htmlFor="problemDescription" className="block text-brown font-medium">
+                  12. Silahkan deskripsikan masalah kamu secara singkat <span className="text-red-600">*</span>
+                </label>
+                <textarea
+                  id="problemDescription"
+                  rows={4}
+                  value={form.problemDescription}
+                  onChange={e => update("problemDescription", e.target.value)}
+                  required
+                  className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                  placeholder="Deskripsikan masalah yang ingin dibahas"
+                />
+                {errors.problemDescription && <p className="text-red-600 text-sm mt-1">{errors.problemDescription}</p>}
+              </div>
+
+              {/* Expectations */}
+              <div>
+                <label htmlFor="expectations" className="block text-brown font-medium">
+                  13. Apa harapan kamu setelah mengikuti sesi konseling ini? <span className="text-red-600">*</span>
+                </label>
+                <textarea
+                  id="expectations"
+                  rows={4}
+                  value={form.expectations}
+                  onChange={e => update("expectations", e.target.value)}
+                  required
+                  className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                  placeholder="Tuliskan harapan Anda"
+                />
+                {errors.expectations && <p className="text-red-600 text-sm mt-1">{errors.expectations}</p>}
+              </div>
+
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-brown font-medium">
+                  14. Alamat Email Aktif <span className="text-red-600">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={form.email}
+                  onChange={e => update("email", e.target.value)}
+                  required
+                  className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                  placeholder="email@example.com"
+                />
+                {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email}</p>}
+              </div>
+            </div>
+
+            {/* Pre-Counseling Section */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold text-brown">Pre-Counseling</h2>
+              
+              <div className="space-y-6">
+                {/* Question 15: Self-harm */}
+                <fieldset>
+                  <legend className="text-brown font-medium">
+                    15. Apakah Anda pernah melakukan atau pernah memikirkan untuk menyakiti diri Anda dalam waktu 1 bulan terakhir? <span className="text-red-600">*</span>
+                  </legend>
+                  <div className="space-y-3 mt-2">
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="selfHarm"
+                        value="true"
+                        checked={form.selfHarm === true}
+                        onChange={() => update("selfHarm", true)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Pernah</span>
+                    </label>
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="selfHarm"
+                        value="false"
+                        checked={form.selfHarm === false}
+                        onChange={() => update("selfHarm", false)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Tidak Pernah</span>
+                    </label>
+                  </div>
+                  {errors.selfHarm && <p className="text-red-600 text-sm mt-1">{errors.selfHarm}</p>}
+                </fieldset>
+
+                {/* Question 16: Suicide thoughts */}
+                <fieldset>
+                  <legend className="text-brown font-medium">
+                    16. Apakah Anda pernah memikirkan atau melakukan percobaan bunuh diri dalam waktu 1 bulan terakhir?
+                  </legend>
+                  <div className="space-y-3 mt-2">
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="suicideThoughts"
+                        value="true"
+                        checked={form.suicideThoughts === true}
+                        onChange={() => update("suicideThoughts", true)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Pernah</span>
+                    </label>
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="suicideThoughts"
+                        value="false"
+                        checked={form.suicideThoughts === false}
+                        onChange={() => update("suicideThoughts", false)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Tidak Pernah</span>
+                    </label>
+                  </div>
+                  {form.suicideThoughts === true && (
+                    <div className="text-right mt-2">
+                      <button
+                        type="button"
+                        onClick={() => update("suicideThoughts", null)}
+                        className="text-sm text-brown/70 hover:text-brown underline"
+                      >
+                        Batalkan pilihan
+                      </button>
+                    </div>
+                  )}
+                  {errors.suicideThoughts && <p className="text-red-600 text-sm mt-1">{errors.suicideThoughts}</p>}
+                </fieldset>
+
+                {/* Question 17: Previous counseling */}
+                <fieldset>
+                  <legend className="text-brown font-medium">
+                    17. Apakah kamu pernah mengikuti mentoring ataupun konseling sebelumnya? <span className="text-red-600">*</span>
+                  </legend>
+                  <div className="space-y-3 mt-2">
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="previousCounseling"
+                        value="true"
+                        checked={form.previousCounseling === true}
+                        onChange={() => update("previousCounseling", true)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Pernah</span>
+                    </label>
+                    <label className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="previousCounseling"
+                        value="false"
+                        checked={form.previousCounseling === false}
+                        onChange={() => update("previousCounseling", false)}
+                        className="h-5 w-5 accent-brown"
+                      />
+                      <span>Tidak Pernah</span>
+                    </label>
+                  </div>
+                  {errors.previousCounseling && <p className="text-red-600 text-sm mt-1">{errors.previousCounseling}</p>}
+                </fieldset>
+
+                {/* Question 18: Previous complaints */}
+                {form.previousCounseling === true && (
+                  <div>
+                    <label htmlFor="previousComplaints" className="block text-brown font-medium">
+                      18. Jika pernah, keluhan apa yang kamu ceritakan sebelumnya? <span className="text-red-600">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="previousComplaints"
+                      value={form.previousComplaints}
+                      onChange={e => update("previousComplaints", e.target.value)}
+                      className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                      placeholder="Jelaskan keluhan yang pernah diceritakan"
+                    />
+                    {errors.previousComplaints && <p className="text-red-600 text-sm mt-1">{errors.previousComplaints}</p>}
+                  </div>
+                )}
+
+                {/* Question 19: Previous treatments */}
+                <div>
+                  <label htmlFor="previousTreatments" className="block text-brown font-medium">
+                    19. Penanganan apa saja yang pernah kamu dapatkan?
+                  </label>
+                  <textarea
+                    id="previousTreatments"
+                    rows={4}
+                    value={form.previousTreatments}
+                    onChange={e => update("previousTreatments", e.target.value)}
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Jelaskan penanganan yang pernah diterima"
+                  />
+                </div>
+
+                {/* Question 20: Expected approach */}
+                <div>
+                  <label htmlFor="expectedApproach" className="block text-brown font-medium">
+                    20. Pendekatan seperti apa yang Anda harapkan dari sesi ini? <span className="text-red-600">*</span>
+                  </label>
+                  <textarea
+                    id="expectedApproach"
+                    rows={4}
+                    value={form.expectedApproach}
+                    onChange={e => update("expectedApproach", e.target.value)}
+                    required
+                    className="mt-2 w-full rounded-md border border-brown/30 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-2 bg-white"
+                    placeholder="Jelaskan pendekatan yang diharapkan"
+                  />
+                  {errors.expectedApproach && <p className="text-red-600 text-sm mt-1">{errors.expectedApproach}</p>}
+                </div>
+              </div>
+            </div>
+
+            {/* Voluntary Contribution Section */}
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold text-brown">Kontribusi Sukarela</h2>
+              
+              <p className="text-brown/70 leading-relaxed">
+                Meski program ini tidak dikenakan biaya, kami membuka kesempatan bagi siapa pun yang tergerak untuk turut mendukung agar program ini bisa terus berjalan. Kontribusi yang diberikan sekecil apapun dengan ikhlas akan membantu program ini menjangkau lebih banyak orang, menjadikan kasih ini menyebar lebih luas lagi, agar lebih banyak beban yang bisa terasa lebih ringan, dan lebih banyak hidup yang kembali dikuatkan ✨❤️
+              </p>
+
+              <fieldset>
+                <legend className="text-brown font-medium">
+                  Apakah Anda ingin memberikan kontribusi sukarela? <span className="text-red-600">*</span>
+                </legend>
+                <div className="space-y-3 mt-2">
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="wantsToContribute"
+                      value="true"
+                      checked={form.wantsToContribute === true}
+                      onChange={() => update("wantsToContribute", true)}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Ya, saya ingin berkontribusi</span>
+                  </label>
+                  <label className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      name="wantsToContribute"
+                      value="false"
+                      checked={form.wantsToContribute === false}
+                      onChange={() => {
+                        update("wantsToContribute", false);
+                        update("proofOfTransferFile", null);
+                      }}
+                      className="h-5 w-5 accent-brown"
+                    />
+                    <span>Tidak, saya tidak ingin berkontribusi saat ini</span>
+                  </label>
+                </div>
+                {errors.wantsToContribute && <p className="text-red-600 text-sm mt-1">{errors.wantsToContribute}</p>}
+              </fieldset>
+
+              {form.wantsToContribute === true && (
+                <div className="space-y-4">
+                  <h3 className="text-lg font-medium text-brown">
+                    Silahkan sertakan bukti transfer bagi kamu yang tergerak untuk mendukung program ini
+                  </h3>
+                  
+                  <div className="bg-off-white-2/50 rounded-lg p-4 border border-brown/10">
+                    <p className="text-brown font-medium mb-2">Informasi Bank:</p>
+                    <p className="text-brown">BCA 6041182391 an Michelle Theodora</p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="block text-brown font-medium">
+                      Upload bukti transfer <span className="text-red-600">*</span>
+                    </label>
+                    <p className="text-sm text-brown/60">Upload 1 file yang didukung: image. Maks 1 GB.</p>
+                    
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="file"
+                        id="proofOfTransfer"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0] || null;
+                          update("proofOfTransferFile", file);
+                        }}
+                        className="hidden"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => document.getElementById('proofOfTransfer')?.click()}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-brown/30 text-brown hover:bg-brown/5 focus:outline-none focus:ring-2 focus:ring-yellow-2 transition-colors"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        Tambahkan file
+                      </button>
+                      {form.proofOfTransferFile && (
+                        <span className="text-brown text-sm">
+                          {form.proofOfTransferFile.name}
+                        </span>
+                      )}
+                    </div>
+                    {errors.proofOfTransferFile && <p className="text-red-600 text-sm mt-1">{errors.proofOfTransferFile}</p>}
+                  </div>
+
+                  <p className="text-sm text-brown/70 italic">
+                    *Feel free untuk skip page ini dan langsung submit jika kamu belum tergerak untuk mendukung program ini 🙏😊
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Submit Button */}
+            <div className="pt-2 space-y-6 text-center">
+              <button
+                type="submit"
+                className="hover:cursor-pointer text-center w-full sm:max-w-sm inline-flex items-center justify-center rounded-md bg-brown text-white px-5 py-2.5 font-medium hover:bg-brown-2 focus:outline-none focus:ring-2 focus:ring-yellow-2"
+              >
+                Kirim Formulir
+              </button>
+              {isSubmitted && (
+                <p className="text-green-700 mt-3">Terima kasih! Form berhasil dikirim. Tim kami akan segera menghubungi Anda.</p>
+              )}
+            </div>
+          </form>
+        </div>
+      </div>
+
       {/* FAQ section */}
       <div className="relative py-24 sm:py-32">
         {/* Decorative dots */}
@@ -708,6 +1539,7 @@ export default function UnchainJourneyPage() {
           </div>
         </div>
       </div>
+
     </section>
   );
 }
